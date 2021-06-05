@@ -37,6 +37,24 @@ public class SelectionSort {
     }
 
     /**
+     * 泛型倒序选择排序
+     * @param arr
+     * @param <T>
+     */
+    public static <T extends Comparable<T>> void reverseSort (T[] arr) {
+        for (int i = arr.length - 1; i >= 0; i--) {
+            int index = i;
+            for (int j = i; j >= 0; j--) {
+                if (arr[j].compareTo(arr[index]) > 0) {
+                    index = j;
+                }
+            }
+
+            swap(arr, i, index);
+        }
+    }
+
+    /**
      * 交换元素位置
      * @param arr
      * @param i
@@ -50,7 +68,7 @@ public class SelectionSort {
 
     public static void main(String[] args) throws Exception{
         /**
-         * 测试一
+         * 测试一 正序排序
          */
         Integer[] arr = {1, 4, 2, 3, 6, 5};
         SelectionSort.sort(arr);
@@ -59,12 +77,22 @@ public class SelectionSort {
         }
 
         /**
-         * 测试二 自定义类
+         * 测试二 倒序排序
+         */
+        Integer[] array = {1, 4, 2, 3, 6, 5};
+        SelectionSort.reverseSort(array);
+        for (int i : arr) {
+            System.out.println(i);
+        }
+
+        /**
+         * 测试三 自定义类
          */
         Student[] students = {
-                new Student("张三", 77),
-                new Student("李四", 88),
-                new Student("王二", 99)
+                new Student("张三", 88),
+                new Student("李四", 77),
+                new Student("王二", 99),
+                new Student("王二", 55)
         };
 
         SelectionSort.sort(students);
@@ -76,6 +104,9 @@ public class SelectionSort {
          * 排序验证
          */
         SortingUtil.sortTest("SelectionSort", students);
+
+
+
     }
 
 }
