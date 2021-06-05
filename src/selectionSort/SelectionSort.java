@@ -1,0 +1,81 @@
+package selectionSort;
+
+import utils.SortingUtil;
+
+/**
+ * @Description 选择排序算法
+ * @author coisini
+ * @date Jun 4, 2021
+ * @Version 1.0
+ */
+public class SelectionSort {
+
+    /**
+     * 私有构造函数，该类不被别人创建，直接使用该类的sort函数
+     */
+    private SelectionSort(){}
+
+    /**
+     * 泛型选择排序法
+     * 原地排序
+     * 于自定义的类，要重写compareTo方法
+     * @param arr
+     */
+    public static <T extends Comparable<T>> void sort(T[] arr) {
+        // arr[0...i) 是有序的; arr[i...n) 是无序的
+        for (int i = 0; i < arr.length; i++) {
+            // 选择 arr[i...n) 中的最小值的索引
+            int minIndex = i;
+            for (int j = i; j < arr.length; j++) {
+                if (arr[j].compareTo(arr[minIndex]) < 0) {
+                    minIndex = j;
+                }
+            }
+
+            swap(arr, i, minIndex);
+        }
+    }
+
+    /**
+     * 交换元素位置
+     * @param arr
+     * @param i
+     * @param j
+     */
+    private static <T> void swap (T[] arr, int i, int j) {
+        T t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
+    public static void main(String[] args) throws Exception{
+        /**
+         * 测试一
+         */
+        Integer[] arr = {1, 4, 2, 3, 6, 5};
+        SelectionSort.sort(arr);
+        for (int i : arr) {
+            System.out.println(i);
+        }
+
+        /**
+         * 测试二 自定义类
+         */
+        Student[] students = {
+                new Student("张三", 77),
+                new Student("李四", 88),
+                new Student("王二", 99)
+        };
+
+        SelectionSort.sort(students);
+        for (Student student : students) {
+            System.out.println(student.toString());
+        }
+
+        /**
+         * 排序验证
+         */
+        SortingUtil.sortTest("SelectionSort", students);
+    }
+
+}
