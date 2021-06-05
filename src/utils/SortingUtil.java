@@ -1,10 +1,6 @@
 package utils;
 
-
 import selectionSort.SelectionSort;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * @Description 排序工具类
@@ -32,17 +28,6 @@ public class SortingUtil {
         return true;
     }
 
-    public static <U extends Object>U getInstance(String clsName) {
-        try {
-            Class<?> cls = Class.forName(clsName);
-            return (U) cls.newInstance();
-        }catch(Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
     public static <T extends Comparable<T>> void sortTest (String className, T[] arr) {
 
         long startTime = System.nanoTime();
@@ -59,7 +44,7 @@ public class SortingUtil {
             throw new RuntimeException(className + " sort is failed");
         }
 
-        System.out.println(time + " s");
+        System.out.println(String.format("%s, n = %d : %f s)", className, arr.length, time));
 
 
 
