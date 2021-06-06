@@ -52,6 +52,22 @@ public class InsertionSort {
     }
 
     /**
+     * 倒序插入排序算法
+     * @param arr
+     * @param <T>
+     */
+    public static <T extends Comparable<T>> void reserveSort (T[] arr) {
+        for (int i = arr.length - 1; i >= 0; i--) {
+            T t = arr[i];
+            int j;
+            for (j = i; j < arr.length - 1 && t.compareTo(arr[j + 1]) > 0; j++) {
+                arr[j] = arr[j + 1];
+            }
+            arr[j] = t;
+        }
+    }
+
+    /**
      * 交换元素位置
      * @param arr
      * @param i
@@ -70,6 +86,15 @@ public class InsertionSort {
         Integer[] arr = {3, 5, 7, 1, 2, 4, 9, 8, 6};
         InsertionSort.sort(arr);
         for (int i : arr) {
+            System.out.println(i);
+        }
+
+        /**
+         * 测试er
+         */
+        Integer[] array = {3, 5, 7, 1, 2, 4, 9, 8, 6};
+        InsertionSort.reserveSort(array);
+        for (int i : array) {
             System.out.println(i);
         }
 
