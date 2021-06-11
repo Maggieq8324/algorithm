@@ -103,11 +103,27 @@ public class Array<T> {
      * @param index
      * @return
      */
-    T get (int index) {
+    public T get (int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
         return data[index];
+    }
+
+    /**
+     * 获取第一个元素
+     * @return
+     */
+    public T getFirst () {
+        return get(0);
+    }
+
+    /**
+     * 获取最后一个元素
+     * @return
+     */
+    public T getLast () {
+        return get(size -1);
     }
 
     /**
@@ -224,6 +240,10 @@ public class Array<T> {
         data = newData;
     }
 
+    /**
+     * 重写toString
+     * @return
+     */
     @Override
     public String toString () {
         StringBuffer stringBuffer = new StringBuffer();
