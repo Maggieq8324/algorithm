@@ -7,7 +7,7 @@ package stack;
  * 左括号必须用相同类型的右括号闭合。
  * 左括号必须以正确的顺序闭合。
  * @author coisini
- * @date
+ * @date Jun 11, 2021
  * @Version 1.0
  */
 public class Solution {
