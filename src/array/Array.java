@@ -56,12 +56,7 @@ public class Array<T> {
      * @param e
      */
     public void addLast (T e) {
-        if (size == data.length) {
-            throw new IllegalArgumentException("AddLast failed. Array is full.");
-        }
-
-        data[size] = e;
-        size ++;
+        add(size, e);
     }
 
     /**

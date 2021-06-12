@@ -1,14 +1,14 @@
-package stack;
+package queue;
 
 import array.Array;
 
 /**
- * @Description 数组栈
+ * @Description 数组队列
  * @author coisini
  * @date Jun 11, 2021
  * @Version 1.0
  */
-public class ArrayStack<T> implements Stack<T> {
+public class ArrayQueue<T> implements Queue<T> {
 
     Array<T> data;
 
@@ -16,23 +16,15 @@ public class ArrayStack<T> implements Stack<T> {
      * 构造方法
      * @param capacity
      */
-    public ArrayStack (int capacity) {
-        data = new Array<>(capacity);
+    public ArrayQueue(int capacity) {
+        data = new Array<>(10);
     }
 
     /**
      * 构造方法
      */
-    public ArrayStack () {
+    public ArrayQueue() {
         data = new Array<>();
-    }
-
-    /**
-     * 获取容量
-     * @return
-     */
-    public int getCapacity () {
-        return data.getCapacity();
     }
 
     /**
@@ -40,30 +32,30 @@ public class ArrayStack<T> implements Stack<T> {
      * @param t
      */
     @Override
-    public void push(T t) {
+    public void enqueue(T t) {
         data.addLast(t);
     }
 
     /**
-     * 元素出栈
+     * 元素出队
      * @return
      */
     @Override
-    public T pop() {
-        return data.removeLast();
+    public T dequeue() {
+        return data.removeFirst();
     }
 
     /**
-     * 获取栈顶元素
+     * 获取队首元素
      * @return
      */
     @Override
-    public T peek() {
-        return data.getLast();
+    public T getFront() {
+        return data.getFirst();
     }
 
     /**
-     * 获取大小
+     * 获取队列长度
      * @return
      */
     @Override
@@ -77,7 +69,15 @@ public class ArrayStack<T> implements Stack<T> {
      */
     @Override
     public boolean isEmpty() {
-        return data.isEmpty();
+        return false;
+    }
+
+    /**
+     * 获取队列容量
+     * @return
+     */
+    public int getCapacity() {
+        return data.getCapacity();
     }
 
     /**
@@ -85,9 +85,9 @@ public class ArrayStack<T> implements Stack<T> {
      * @return
      */
     @Override
-    public String toString () {
+    public String toString() {
         StringBuilder resp = new StringBuilder();
-        resp.append("Stack: [");
+        resp.append("Queue: front [");
         for (int i = 0; i < data.getSize(); i ++) {
             resp.append(data.get(i));
 
@@ -97,20 +97,22 @@ public class ArrayStack<T> implements Stack<T> {
 
         }
 
-        resp.append("] top");
+        resp.append("] tail");
 
         return resp.toString();
     }
 
     public static void main(String[] args) {
-        ArrayStack<Integer> arrayStack = new ArrayStack<>();
-        for (int i = 0; i < 5; i++) {
-            arrayStack.push(i);
-            System.out.println(arrayStack);
-        }
+        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+        for (int i = 0; i < 10; i++) {
+            arrayQueue.enqueue(i);
+            System.out.println(arrayQueue);
 
-        arrayStack.pop();
-        System.out.println(arrayStack);
+            if (i % 3 == 2) {
+                arrayQueue.dequeue();
+                System.out.println(arrayQueue);
+            }
+        }
     }
 
 }
