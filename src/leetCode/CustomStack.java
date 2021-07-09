@@ -16,20 +16,62 @@ package leetCode;
  */
 public class CustomStack {
 
+    /**
+     * 栈
+     */
+    private Integer[] stack;
+
+    /**
+     * 栈顶位置
+     */
+    int top;
+
+    /**
+     * 构造方法
+     * @param maxSize
+     */
     public CustomStack(int maxSize) {
-
+        stack = new Integer[maxSize];
+        top = -1;
     }
 
+    /**
+     * 添加元素
+     * 判断当前元素的个数是否达到上限，如果没有达到，
+     * 就把 top 后移一个位置并添加一个元素。
+     * @param x
+     */
     public void push(int x) {
-
+        if (top != stack.length - 1) {
+            top ++;
+            stack[top] = x;
+        }
     }
 
+    /**
+     * 元素出栈
+     * 判断当前栈是否为空，非空返回栈顶元素并将 top 前移一位，否则返回 -1
+     * @return
+     */
     public int pop() {
-        return 1;
+        if (top == -1) {
+            return -1;
+        }
+
+        -- top;
+        return stack[top + 1];
     }
 
+    /**
+     * 栈底的 k 个元素的值都增加 val。如果栈中元素总数小于 k，则栈中的所有元素都增加 val
+     * 直接对栈底的最多 k 个元素加上 val
+     * @param k
+     * @param val
+     */
     public void increment(int k, int val) {
-
+        for (int i = 0; i < Math.min(k, top + 1); i++) {
+            stack[i] += val;
+        }
     }
 }
 
