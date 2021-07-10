@@ -9,7 +9,7 @@ package queue;
 public interface Queue<T> {
 
     /**
-     * 添加元素
+     * 元素入队
      * @param t
      */
     void enqueue(T t);
