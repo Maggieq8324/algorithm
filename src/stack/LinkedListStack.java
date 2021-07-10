@@ -90,5 +90,4 @@ public class LinkedListStack<T> implements Stack<T> {
         stack.pop();
         System.out.println(stack);
     }
-
 }
